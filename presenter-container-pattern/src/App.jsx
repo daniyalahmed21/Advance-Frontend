@@ -1,13 +1,14 @@
 import React from 'react'
-import TextInput from './components/TextInput/TextInput'
-import TextInputFormContainer from './components/TextInputForm/TextInputFormContainer'
+import { Route, Routes } from 'react-router'
+import StartGame from './Pages/StartGame'
+import PlayGame from './pages/PlayGame'
 
 const App = () => {
   return (
-    <div className='flex justify-center w-full mt-4'>
-    <TextInputFormContainer/>
-
-    </div>
+    <Routes>
+      <Route path='/start' element={<StartGame/>}/>
+      <Route path='/play' element={<PlayGame/>}/>
+    </Routes>
   )
 }
 
