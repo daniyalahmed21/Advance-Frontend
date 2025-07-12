@@ -11,7 +11,7 @@ const TextInputFormContainer = () => {
     event.preventDefault();
 
     if (inputValue) {
-        navigate("/play",{ state: { wordSelected: inputValue } })
+        navigate(`/play`,{ state: { wordSelected: inputValue } })
     setInputValue("");
   }
   }
