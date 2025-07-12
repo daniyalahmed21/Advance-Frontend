@@ -4,10 +4,10 @@
  */
 
 export function getMaskedText (originalText,guessedLetters) {
-    guessedLetters = guessedLetters.map((Letter)=> Letter.toUpperCase())
+    guessedLetters = guessedLetters.map((Letter)=> Letter?.toUpperCase())
     const guessedLettersSet = new Set(guessedLetters)
 
-    const result = originalText.toUpperCase().split("").map((char)=>{
+    const result = originalText?.toUpperCase().split("").map((char)=>{
         if(guessedLettersSet.has(char)){
             return char ;
         }

@@ -6,7 +6,6 @@ import Hangman from "../components/Hangman/Hangman";
 
 const PlayGame = () => {
   const location = useLocation();
-
   const wordSelected = location.state?.wordSelected;
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [step, setStep] = useState(0);
@@ -14,7 +13,7 @@ const PlayGame = () => {
 
   const onLetterClick = (LetterClicked) => {
     setGuessedLetters((prev) => [...prev, LetterClicked]);
-    if (wordSelected.toUpperCase().includes(LetterClicked)) {
+    if (wordSelected?.toUpperCase().includes(LetterClicked)) {
       console.log("correct");
     } else {
       console.log("wrong");
@@ -25,23 +24,27 @@ const PlayGame = () => {
 
   return (
     <div className="p-5 flex flex-col  items-center gap-20 mt-10 ">
-      <MaskedText
-        text={wordSelected}
-        guessedLetters={guessedLetters}
-        setGuessed={setGuessed}
-      />
-      {!guessed ? (
+      {wordSelected && (
         <>
-          <LetterButtons
-            step={step}
+          <MaskedText
             text={wordSelected}
             guessedLetters={guessedLetters}
-            onLetterClick={onLetterClick}
+            setGuessed={setGuessed}
           />
-          <Hangman step={step} />
+          {!guessed ? (
+            <>
+              <LetterButtons
+                step={step}
+                text={wordSelected}
+                guessedLetters={guessedLetters}
+                onLetterClick={onLetterClick}
+              />
+              <Hangman step={step} />
+            </>
+          ) : (
+            ""
+          )}
         </>
-      ) : (
-        ""
       )}
     </div>
   );
