@@ -7,6 +7,7 @@ const TextInputFormContainer = () => {
   const [inputType, setInputType] = useState("text");
   const navigate = useNavigate();
 
+
   function handleFormSubmit(event) {
     event.preventDefault();
 
