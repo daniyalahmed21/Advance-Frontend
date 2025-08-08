@@ -1,12 +1,17 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import useDebounceState from './hooks/useDebounce'
 
 function App() {
   const [count, setCount] = useLocalStorage("count",0)
+  const [state, setState] = useDebounceState("",1000);
 
+  const handleInput = (e) =>{
+    setState(e.target.value)
+  }
+  
   return (
     <>
       <div>
@@ -18,6 +23,9 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <input type="text" onChange={handleInput}/>
+      <br />
+      {state}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
