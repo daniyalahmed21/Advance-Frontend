@@ -1,28 +1,19 @@
-const ImpressionTrackable = (ChildComponent) => {
-  return (props) => {
-    const handleOnClick = () => {
-      console.log("Clicked", ChildComponent.name);
-    };
-
-    return (
-      <div onClick={handleOnClick}>
-        <ChildComponent  {...props} />
-      </div>
-    );
+const OnClickTracking = ({ children }) => {
+  const handleOnClick = () => {
+    console.log("Clicked");
   };
+  return <div onClick={handleOnClick}>{children}</div>;
 };
 
 const SimpleComponent = ({ x }) => {
   return <div>{x}</div>;
 };
 
-const EnhancedComponent = ImpressionTrackable(SimpleComponent);
-
 function App() {
   return (
-    <div>
-      <EnhancedComponent x={10} />
-    </div>
+    <OnClickTracking>
+      <SimpleComponent x="hello" />
+    </OnClickTracking>
   );
 }
 
